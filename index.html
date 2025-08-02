@@ -3,45 +3,121 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tapiceria y Limpieza</title>
+    <title>Tapicería y Limpieza Profesional</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header class="header">
-        <div class="logo-container">
-            <img src="img/logo.png" alt="Logo de la empresa" class="logo">
-            <h1 class="site-title">Tapiceria y Limpieza</h1>
+        <div class="header-content">
+            <div class="logo-section">
+                <div class="logo">
+                    <i class="fas fa-couch"></i>
+                </div>
+                <div class="company-info">
+                    <h1>Tapicería y Limpieza</h1>
+                    <p>Servicios profesionales para el hogar</p>
+                </div>
+            </div>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="#inicio"><i class="fas fa-home"></i> Inicio</a></li>
+                    <li><a href="#servicios"><i class="fas fa-star"></i> Servicios</a></li>
+                    <li><a href="https://limtap-cotizador.onrender.com" target="_blank" class="cta-button">
+                        <i class="fas fa-calculator"></i> Cotización
+                    </a></li>
+                    <li><a href="#contacto"><i class="fas fa-phone"></i> Contacto</a></li>
+                </ul>
+            </nav>
         </div>
-        <nav class="navbar">
-            <ul>
-                <li><a href="#inicio">Inicio</a></li>
-                <li><a href="https://limtap-cotizador.onrender.com" target="_blank" class="btn">Cotizacion</a></li>
-                <li><a href="#contacto">Contacto</a></li>
-            </ul>
-        </nav>
     </header>
-    <main>
-        <h1><center>Bienvenidos</center></h1>
-            <p>Ofrecemos los mejores servicios de limpieza y restauración para tus muebles y tapicería.</p>
-        <section id="inicio" class="carousel-container">
+
+    <main class="main-content">
+        <section class="hero-section fade-in">
+            <h1 class="hero-title">Bienvenidos</h1>
+            <p class="hero-subtitle">
+                Transformamos y renovamos tus muebles con los mejores servicios de limpieza y restauración. 
+                Calidad profesional garantizada.
+            </p>
+        </section>
+
+        <section id="inicio" class="carousel-section fade-in">
+            <h2 class="section-title">Nuestro Trabajo</h2>
+            <p class="section-subtitle">
+                Descubre la transformación que podemos lograr con tus muebles y tapicería
+            </p>
+            
             <div class="video-carousel">
-                <video src="videos/video1.mp4" muted></video>
-                <video src="videos/video2.mp4" muted></video>
-                <video src="videos/video3.mp4" muted></video>
-                <video src="videos/video4.mp4" muted></video>
-                <video src="videos/video5.mp4" muted></video>
-                <video src="videos/video6.mp4" muted></video>
-                <video src="videos/video7.mp4" muted></video>
+                <div class="video-loading">Cargando videos...</div>
+                <video src="videos/video1.mp4" muted playsinline></video>
+                <video src="videos/video2.mp4" muted playsinline></video>
+                <video src="videos/video3.mp4" muted playsinline></video>
+                <video src="videos/video4.mp4" muted playsinline></video>
+                <video src="videos/video5.mp4" muted playsinline></video>
+                <video src="videos/video6.mp4" muted playsinline></video>
+                <video src="videos/video7.mp4" muted playsinline></video>
             </div>
             
+            <div class="carousel-controls" id="carouselControls">
+                <!-- Los dots se generan dinámicamente -->
+            </div>
         </section>
-        <!-- Otras secciones aquí -->
-    </main>
-    
 
-    <div class="footer">
-        <p>© 2024 Limpieza y Tapicería. Todos los derechos reservados.</p>
-    </div>
+        <section id="servicios" class="services-section fade-in">
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-couch"></i>
+                </div>
+                <h3>Limpieza de Tapicería</h3>
+                <p>Limpieza profunda y especializada para sofás, sillas y todo tipo de tapicería. Eliminamos manchas difíciles y renovamos tus muebles.</p>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-tools"></i>
+                </div>
+                <h3>Restauración</h3>
+                <p>Reparación y restauración completa de muebles. Devolvemos la vida a tus piezas favoritas con técnicas profesionales.</p>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-home"></i>
+                </div>
+                <h3>Servicio a Domicilio</h3>
+                <p>Comodidad total con nuestro servicio a domicilio. Nos encargamos de todo sin que tengas que salir de casa.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer id="contacto" class="footer">
+        <div class="footer-content">
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <div>
+                        <strong>Teléfono</strong><br>
+                        +57 300 123 4567
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <div>
+                        <strong>Email</strong><br>
+                        info@tapiceriaylimpieza.com
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <div>
+                        <strong>Ubicación</strong><br>
+                        Bogotá, Colombia
+                    </div>
+                </div>
+            </div>
+            <p>&copy; 2024 Tapicería y Limpieza. Todos los derechos reservados.</p>
+        </div>
+    </footer>
 
     <script src="script.js"></script>
 </body>
