@@ -293,6 +293,29 @@ body {
     gap: 0.8rem;
 }
 
+/* WhatsApp link styling */
+.whatsapp-link {
+    color: #25d366 !important;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.whatsapp-link:hover {
+    color: #20ba5a !important;
+    transform: scale(1.05);
+}
+
+.whatsapp-link::before {
+    content: "\f232";
+    font-family: "Font Awesome 6 Brands";
+    font-size: 1.1rem;
+    color: #25d366;
+}
+
 .contact-item i {
     background: linear-gradient(135deg, #667eea, #764ba2);
     padding: 0.8rem;
