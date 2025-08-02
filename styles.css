@@ -1,126 +1,360 @@
-/* Estilo general */
-body {
-    font-family: Arial, sans-serif;
+* {
     margin: 0;
     padding: 0;
-    color: #333;
-    background-color: #f9f9f9;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    line-height: 1.6;
+    color: #2c3e50;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+}
+
+/* Header moderno */
+.header {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.header-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem 2rem;
     display: flex;
-    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo-section {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.logo {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    border-radius: 16px;
+    display: flex;
     align-items: center;
     justify-content: center;
-}
-
-/* Header */
-header {
-    background-color: #2d89ef; /* Fondo azul */
-    color: white; /* Color del texto */
-    padding: 10px 0; /* Espaciado vertical */
-    text-align: center;
-    width: fit-content;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-nav a {
-    margin: 0 15px;
     color: white;
-    text-decoration: none;
+    font-size: 1.5rem;
+    font-weight: bold;
+    box-shadow: 0 4px 16px rgba(102, 126, 234, 0.3);
 }
 
-/* Carrousel */
-.carousel-container {
-    width: 100%;
-    max-width: 800px;
-    text-align: center;
+.company-info h1 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 0.2rem;
 }
+
+.company-info p {
+    font-size: 0.9rem;
+    color: #64748b;
+    font-weight: 500;
+}
+
+.nav-menu {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+}
+
+.nav-menu a {
+    text-decoration: none;
+    color: #475569;
+    font-weight: 600;
+    font-size: 0.95rem;
+    padding: 0.8rem 1.5rem;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.nav-menu a:hover {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+}
+
+.cta-button {
+    background: linear-gradient(135deg, #10b981, #059669);
+    color: white !important;
+    box-shadow: 0 4px 16px rgba(16, 185, 129, 0.3);
+}
+
+.cta-button:hover {
+    background: linear-gradient(135deg, #059669, #047857);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(16, 185, 129, 0.4);
+}
+
+/* Main content */
+.main-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 3rem 2rem;
+}
+
+.hero-section {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.hero-title {
+    font-size: 3.5rem;
+    font-weight: 800;
+    color: white;
+    margin-bottom: 1.5rem;
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.hero-subtitle {
+    font-size: 1.3rem;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 2rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Video carousel mejorado */
+.carousel-section {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    border-radius: 24px;
+    padding: 3rem;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    margin-bottom: 4rem;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.section-subtitle {
+    text-align: center;
+    color: #64748b;
+    font-size: 1.1rem;
+    margin-bottom: 3rem;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .video-carousel {
     position: relative;
-    width: 100%; /* Ocupa el 100% del ancho del contenedor */
-    max-width: 1000px; /* Tamaño máximo del carrusel */
-    aspect-ratio: 4 / 3; /* Proporción 16:9 (para video pequeño)(,  */
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    aspect-ratio: 16/9;
+    border-radius: 20px;
     overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #6065612f; /* Fondo opcional */
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    background: #f8fafc;
 }
 
 .video-carousel video {
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%; /* El video se adapta al ancho del contenedor */
-    height: 100%; /* El video se adapta a la altura del contenedor */
-    object-fit: contain; /* Asegura que el video completo se muestre */
-    opacity: 0; /* Ocultamos los videos inactivos */
-    transition: opacity 1s ease-in-out;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 1.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .video-carousel video.active {
-    opacity: 1; /* Video activo visible */
+    opacity: 1;
     z-index: 1;
 }
-/* logo */
 
-/* Contenedor principal del header */
-header {
-    background-color: #2d89ef; /* Fondo azul */
-    color: white; /* Color del texto */
-    padding: 4px 0; /* Mantén el tamaño del fondo */
-    text-align: center;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    position: relative; /* Necesario para el ajuste del logo */
-}
-
-/* Logo y título */
-.logo-container {
-    margin-top: -50px; /* Reduce la separación superior del logo */
-}
-/*  manejamos el tamaño del logo     */
-.logo {
-    width: 60%; /* Aumenta el tamaño del logo */
-    height: auto; /* Mantén las proporciones */
-    max-width: 100%; /* Responsivo */
-    margin-top: 50px; /* Ajusta la posición para que no desorganice */
-}
-.site-title {
-    font-family: 'Arial Black', sans-serif; /* Fuente llamativa */
-    font-size: 1.5rem; /* Tamaño del texto */
-    color: #2c3e50; /* Color del texto */
-    margin: 5px 0 0 0; /* Espaciado */
-}
-
-/* Barra de navegación */
-.navbar {
-    background-color: #2c3e50; /* Color de fondo */
-    width: 100%; /* Barra ocupa todo el ancho */
-    text-align: center;
-    padding: 10px 0; /* Espaciado vertical */
-    border-radius: 10px; /* Bordes redondeados */
-}
-
-.navbar ul {
-    list-style: none; /* Quitar puntos de la lista */
-    padding: 0;
-    margin: 0;
+.carousel-controls {
     display: flex;
     justify-content: center;
-    gap: 20px; /* Espacio entre enlaces */
+    gap: 0.5rem;
+    margin-top: 2rem;
 }
 
-.navbar a {
-    text-decoration: none; /* Sin subrayado */
-    font-size: 1.2rem; /* Tamaño del texto */
-    font-weight: bold; /* Texto en negrita */
-    color: white; /* Color del texto */
-    transition: color 0.3s ease;
+.control-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(102, 126, 234, 0.3);
+    cursor: pointer;
+    transition: all 0.3s ease;
 }
 
-.navbar a:hover {
-    color: #f39c12; /* Color de texto al pasar el mouse */
+.control-dot.active {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    transform: scale(1.2);
+}
+
+/* Services section */
+.services-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-bottom: 4rem;
+}
+
+.service-card {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    border-radius: 20px;
+    padding: 2.5rem;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.service-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.service-icon {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+    color: white;
+    font-size: 2rem;
+}
+
+.service-card h3 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: #2c3e50;
+}
+
+.service-card p {
+    color: #64748b;
+    line-height: 1.6;
+}
+
+/* Footer */
+.footer {
+    background: rgba(44, 62, 80, 0.95);
+    backdrop-filter: blur(20px);
+    color: white;
+    text-align: center;
+    padding: 3rem 2rem;
+    margin-top: 4rem;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.contact-info {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.contact-item i {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    padding: 0.8rem;
+    border-radius: 12px;
+    font-size: 1.2rem;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .header-content {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1rem;
+    }
+
+    .nav-menu {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1rem;
+    }
+
+    .hero-title {
+        font-size: 2.5rem;
+    }
+
+    .main-content {
+        padding: 2rem 1rem;
+    }
+
+    .carousel-section {
+        padding: 2rem 1rem;
+    }
+
+    .contact-info {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+}
+
+/* Animaciones */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in {
+    animation: fadeInUp 0.8s ease-out;
+}
+
+/* Loading state para videos */
+.video-loading {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #64748b;
+    font-size: 1.1rem;
+    z-index: 2;
 }
