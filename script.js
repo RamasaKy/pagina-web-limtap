@@ -5,11 +5,11 @@ let cotizacionActual = {};
 const precios = {
     "colchón": 150000,
     "sofá": 100000,
-    "sofacama": 130000,
-    "silla sala": 15000,
-    "vehículo": 80000,
-    "silla comedor sencilla": 10000,
-    "silla comedor forrada": 15000
+    "sofacama": 170000,
+    "silla sala": 70000,
+    "vehículo": 100000,
+    "silla comedor sencilla": 20000,
+    "silla comedor forrada": 35000
 };
 
 // PERSONALIZABLE: Descuentos disponibles
@@ -280,3 +280,4 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+
