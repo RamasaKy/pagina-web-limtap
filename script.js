@@ -1,11 +1,132 @@
+// Variables globales para el cotizador
+let cotizacionActual = {};
+
+// PERSONALIZABLE: Precios base por objeto (en pesos colombianos)
+const precios = {
+    "colchón": 150000,
+    "sofá": 100000,
+    "sofacama": 130000,
+    "silla sala": 15000,
+    "vehículo": 80000,
+    "silla comedor sencilla": 10000,
+    "silla comedor forrada": 15000
+};
+
+// PERSONALIZABLE: Descuentos disponibles
+const descuentos = {
+    "referido": 0.10,        // 10% de descuento
+    "promo_instagram": 0.15  // 15% de descuento
+};
+
+// PERSONALIZABLE: Número de WhatsApp (formato: código país + número sin espacios)
+const numeroWhatsApp = "573112672513"; // Cambiar por tu número real
+
+// Función para mostrar el cotizador
+function mostrarCotizador() {
+    const cotizadorSection = document.getElementById('cotizador');
+    cotizadorSection.classList.add('active');
+    cotizadorSection.scrollIntoView({ behavior: 'smooth' });
+}
+
+// Función para calcular la cotización
+function calcularCotizacion() {
+    const cliente = document.getElementById('cliente').value.trim();
+    const objeto = document.getElementById('objeto').value;
+    const cantidad = parseInt(document.getElementById('cantidad').value);
+    const descuentoSeleccionado = document.getElementById('descuento').value;
+
+    // Validaciones
+    if (!cliente) {
+        alert('Por favor, ingresa tu nombre');
+        document.getElementById('cliente').focus();
+        return;
+    }
+
+    if (!cantidad || cantidad < 1) {
+        alert('Por favor, ingresa una cantidad válida');
+        document.getElementById('cantidad').focus();
+        return;
+    }
+
+    // Calcular precio base
+    const precioBase = precios[objeto];
+    let subtotal = precioBase * cantidad;
+
+    // Aplicar descuento si existe
+    let descuentoAplicado = 0;
+    let textoDescuento = '';
+    if (descuentoSeleccionado !== 'ninguno' && descuentos[descuentoSeleccionado]) {
+        descuentoAplicado = subtotal * descuentos[descuentoSeleccionado];
+        const porcentaje = descuentos[descuentoSeleccionado] * 100;
+        textoDescuento = `Descuento ${descuentoSeleccionado.replace('_', ' ')} (${porcentaje}%): -$${descuentoAplicado.toLocaleString('es-CO')}`;
+    }
+
+    const total = subtotal - descuentoAplicado;
+
+    // Guardar cotización actual para WhatsApp
+    cotizacionActual = {
+        cliente,
+        objeto,
+        cantidad,
+        descuento: descuentoSeleccionado,
+        subtotal,
+        descuentoAplicado,
+        total
+    };
+
+    // Mostrar resultado
+    document.getElementById('totalPrecio').textContent = `$${total.toLocaleString('es-CO')}`;
+    
+    let detalles = `
+        <div style="text-align: left; max-width: 400px; margin: 0 auto;">
+            <p><strong>Cliente:</strong> ${cliente}</p>
+            <p><strong>Servicio:</strong> ${objeto} (${cantidad} ${cantidad === 1 ? 'unidad' : 'unidades'})</p>
+            <p><strong>Precio unitario:</strong> $${precioBase.toLocaleString('es-CO')}</p>
+            <p><strong>Subtotal:</strong> $${subtotal.toLocaleString('es-CO')}</p>
+            ${textoDescuento ? `<p style="color: #10b981;"><strong>${textoDescuento}</strong></p>` : ''}
+            <hr style="margin: 1rem 0; border: 1px solid rgba(255,255,255,0.3);">
+            <p style="font-size: 1.2rem;"><strong>Total:</strong> $${total.toLocaleString('es-CO')}</p>
+        </div>
+    `;
+    
+    document.getElementById('detalles').innerHTML = detalles;
+    document.getElementById('resultado').classList.add('show');
+}
+
+// Función para enviar cotización por WhatsApp
+function enviarWhatsApp() {
+    if (!cotizacionActual.cliente) {
+        alert('Primero debes calcular una cotización');
+        return;
+    }
+
+    const mensaje = `Hola! Solicito cotización:
+
+📋 *DETALLES DEL SERVICIO:*
+• Cliente: ${cotizacionActual.cliente}
+• Servicio: ${cotizacionActual.objeto}
+• Cantidad: ${cotizacionActual.cantidad} ${cotizacionActual.cantidad === 1 ? 'unidad' : 'unidades'}
+• Precio unitario: $${precios[cotizacionActual.objeto].toLocaleString('es-CO')}
+
+💰 *RESUMEN DE COSTOS:*
+• Subtotal: ${cotizacionActual.subtotal.toLocaleString('es-CO')}
+${cotizacionActual.descuentoAplicado > 0 ? `• Descuento: -${cotizacionActual.descuentoAplicado.toLocaleString('es-CO')}` : ''}
+• *TOTAL: ${cotizacionActual.total.toLocaleString('es-CO')}*
+
+¿Cuándo podrían realizar el servicio?`;
+
+    const whatsappUrl = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensaje)}`;
+    window.open(whatsappUrl, '_blank');
+}
+
+// Código del carrusel de videos
 document.addEventListener('DOMContentLoaded', () => {
     const videos = document.querySelectorAll('.video-carousel video');
     const controlsContainer = document.getElementById('carouselControls');
     const loadingElement = document.querySelector('.video-loading');
     let currentIndex = 0;
-    let isPlaying = false;
 
-    // Crear dots de control
+    // Crear dots de control para cada video
     videos.forEach((_, index) => {
         const dot = document.createElement('div');
         dot.className = `control-dot ${index === 0 ? 'active' : ''}`;
@@ -55,17 +176,16 @@ document.addEventListener('DOMContentLoaded', () => {
     // Inicializar primer video
     function initializeCarousel() {
         if (videos.length > 0) {
-            loadingElement.style.display = 'none';
+            if (loadingElement) {
+                loadingElement.style.display = 'none';
+            }
             videos[0].classList.add('active');
             
             // Intentar reproducir el primer video
             const playPromise = videos[0].play();
             if (playPromise !== undefined) {
-                playPromise.then(() => {
-                    isPlaying = true;
-                }).catch(error => {
+                playPromise.catch(error => {
                     console.log('Autoplay prevented:', error);
-                    // Mostrar mensaje de que el usuario debe hacer clic para reproducir
                 });
             }
 
@@ -79,7 +199,7 @@ document.addEventListener('DOMContentLoaded', () => {
     videos.forEach(video => {
         video.addEventListener('loadeddata', () => {
             videosLoaded++;
-            if (videosLoaded === 1) { // Iniciar cuando el primer video esté listo
+            if (videosLoaded === 1) {
                 initializeCarousel();
             }
         });
@@ -96,7 +216,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // Fallback si los videos no cargan
     setTimeout(() => {
         if (videosLoaded === 0) {
-            loadingElement.textContent = 'Videos no disponibles';
+            if (loadingElement) {
+                loadingElement.textContent = 'Videos no disponibles';
+            }
             initializeCarousel();
         }
     }, 3000);
@@ -137,4 +259,24 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
+
+    // Validación en tiempo real para el cotizador
+    const clienteInput = document.getElementById('cliente');
+    const cantidadInput = document.getElementById('cantidad');
+
+    if (clienteInput) {
+        clienteInput.addEventListener('input', function() {
+            // Limpiar caracteres especiales innecesarios
+            this.value = this.value.replace(/[^a-zA-ZáéíóúÁÉÍÓÚñÑ\s]/g, '');
+        });
+    }
+
+    if (cantidadInput) {
+        cantidadInput.addEventListener('input', function() {
+            // Asegurar que solo sean números positivos
+            if (this.value < 1) {
+                this.value = 1;
+            }
+        });
+    }
 });
